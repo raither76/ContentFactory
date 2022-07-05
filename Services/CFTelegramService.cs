@@ -30,9 +30,9 @@ public class CFTelegramService : BackgroundService, ICFTelegramService
         switch (what)
         {
             case "session_pathname": return Path.Combine(path, "WTelegram.session");
-            case "api_id": return "13949166";
-            case "api_hash": return "ecc165de859e8f2b4c6472dc6cfc606f";
-            case "phone_number": return "+79640547152";
+            case "api_id": return "===================";
+            case "api_hash": return "===========================";
+            case "phone_number": return "+======================";
             case "verification_code": return _config["Manager:code"];
             case "first_name": return "CFAPI";      // if sign-up is required
             case "last_name": return "----";        // if sign-up is required
