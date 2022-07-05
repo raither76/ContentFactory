@@ -1,0 +1,46 @@
+﻿@using ContentFactory.Models
+@model Video
+ <form name="videocontent-@Model.Id" id="videocontent-@Model.Id" method="post" enctype="multipart/form-data" >
+     <ul class="navbar-nav flex-grow-1">
+         <ul class="navbar-nav">
+             <li class="nav-item">
+                 <a class="nav-link text-dark select-video" id="v-@Model.Id">Добавить/заменить видео
+                     <img class='menuicon' src='/images/video-folder.png'/>
+                 </a>
+             </li>
+             <li class="nav-item save-video" id="s-@Model.Id" hidden="hidden">
+                 <a class="nav-link text-dark" >Сохранить видео
+                        <img class='menuicon' src='/images/save-video.png'/>
+                 </a>
+             </li>
+             <li class="nav-item"  >
+                 <a class="nav-link text-dark save-desc" id="sd-@Model.Id" >Сохранить описание
+                        <img class='menuicon' src='/images/save.png'/>
+                 </a>
+             </li>
+         </ul>
+     </ul>
+     <div class='form-group row' style="margin-top:15px;">
+         <div class="form-floating col-md-8">
+         <input asp-for="Name" name="Name"  class="form-control" autocomplete="on" aria-required="true" />
+         <label>Наименование</label>
+         </div>
+         <div class="form-floating col-md-4">
+             <input asp-for="Price" name="Price"  class="form-control" autocomplete="on" aria-required="true" />
+             <label>Цена</label>
+         </div>
+         <div class="form-floating col-md-12">
+             <input asp-for="Description" name="Description" class="form-control" autocomplete="on" aria-required="true" />
+             <label>Описание</label>
+         </div>
+         <hr />
+         <div class="progress" id="progress-@Model.Id">
+         <div class="progress-bar"  id="progress-bar-@Model.Id"></div>
+         <div class="progress-value"  id="progress-value-@Model.Id">0 %</div>
+         </div>
+         <div class="error"></div>
+         
+     </div>
+     <input asp-for="Id" name="Id"  hidden="hidden">
+     <input type="file" name="videofile-@Model.Id" id="videofile-@Model.Id" class="form-control vid" accept=".mp4" hidden="hidden">
+ </form>

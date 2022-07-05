@@ -1,0 +1,36 @@
+﻿{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "https://contentfactory.store",
+      "sslPort": 44318 //44383 
+    }
+  },
+  "profiles": {
+    "ContentFactory": {
+      "commandName": "Project",
+      "dotnetRunMessages": "true",
+      "launchBrowser": true,
+      //"launchUrl": "userbot/status",
+      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      //"launchUrl": "userbot/status",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "api_id": "13949166",
+        "api_hash": "ecc165de859e8f2b4c6472dc6cfc606f",
+        "phone_number": "+79640547152",
+        "first_name": "CFAPI",
+        "last_name": "---"
+      }
+    }
+  }
+}

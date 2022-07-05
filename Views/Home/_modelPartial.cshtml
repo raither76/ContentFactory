@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Content Factory - Главная";
+}
+@using ContentFactory.ViewModels
+@using ContentFactory.Models
+
+@model List<Model>
+<div class="card-group">
+        @{foreach (var mod in Model)
+        { 
+              <div class="card col-md-3">
+                <a href="/Order/AddOrder?modelId=@mod.Id">
+                <img src="/uploads/@mod.ModelImages.FirstOrDefault(x=>x.FaceImg == true).FileName" class="card-img-top" alt="Content Factory - @mod.Name">
+                </a>
+                <div class="card-body">
+                  <p class="card-title">Модель @mod.Name</p>
+                  <ul class="list-inline mod-caption">
+                      <li class="list-inline-item">Размер @mod.Size, Рост @mod.Growth</li>
+                      <li class="list-inline-item">ОГ @mod.BreastVolume, ОТ @mod.Waist, ОБ @mod.Hips, Нога @mod.FootSize</li>
+                  </ul>
+                  <p class="card-text mod-date">Дата: @mod.WorkDate.ToLongDateString()</p>
+                </div>
+              </div>
+ 
+        }}
+
+</div>
+
+
+
+

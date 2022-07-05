@@ -1,0 +1,303 @@
+﻿
+@using ContentFactory.ViewModels
+@model FillOrderViewModel
+<div class="order">
+    <div style="width:100%;">
+        <h5>Количество фото на 1 товар</h5>
+    </div>
+</div>
+<div class="order">
+
+    <table>
+        @{
+            var anc = "";
+            for (int i = 0; i < 5; i++)
+            {
+                string st1 = "unact";
+                if (i <= Model.NumberPhotos) st1 = "";
+                if (i == 0) anc = "anchor1";  else anc = "";
+                <tr id="im-@i" class="group-image @st1">
+                    <td style="width:30%;" id="@anc" class="titlegroup">
+                        <ul class="selector">
+                            <li>
+                                @{
+                                    string st = ""; if (i <= Model.NumberPhotos) st = "check";
+                                }
+                                <a class="group-select @st" id="group-@i">
+                                    @((i+1)*3)
+                                </a>
+                                <span class="newgood">@String.Format("{0:C0}", Model.Catalog[i])</span>
+                                
+                            </li>
+                            <li>
+                            <span class="phone">@String.Format("{0:C0}", Model.Catalog[i])</span>
+                            <p>@Model.Txt[i]</p>
+                           
+                            </li>
+
+                        </ul>
+
+                    </td>
+                    @{
+                        for (int j = 0; j < 3; j++)
+                        {
+                          
+                            <td class="image-cell"><img class ="tableImage row-image"  src="/uploads/@Model.CatalogImages[j+(i*3)].FileName" alt="Empty"/></td>
+                        }
+                    }
+                    <td class="newgood" style="width:10%;"></td>
+                </tr>
+            }
+        }
+
+    </table>
+</div>
+<div class="order" >
+    <ul class="list-inline line">
+    </ul>
+</div>
+<div class="order">
+    <div style="width:100%;">
+        <h5 id="locselection">Выбор локации</h5>
+    </div>
+</div>
+<div class="order">
+    <table>
+        <tr>
+            @{
+                var rcl="";
+                
+            }
+            @{
+                foreach(var item in Model.Locations)
+                { if (Model.LocId == item.Id) { rcl = "check"; } else { rcl = "uncheck"; }
+
+                    <td class="image-cell loc-cell">
+                    <ul class="loc">
+                        <li><img class ="tableImage row-image"  src="/uploads/@item.FileName" alt="Empty"/></li>
+                        <li>
+                            <a class="radio-container" id="locsel-@item.Id">
+                                <er id="sel-@item.Id" class="radio @rcl">v</er>
+                            </a>
+                        </li>
+                        @{rcl = "uncheck";}
+                        <li><h5>@item.Name</h5></li>
+                        <li><h5>+ @String.Format("{0:C0}", item.Price)</h5></li>
+                        <li><p>@item.Description</p></li>
+                         @{if (item.Color != "#000000")
+                            {
+                                <li>
+                                  <select asp-for="CurrentColor" name="CurrentColor"  id="CurrentColor" autocomplete="on" aria-required="true" >
+                                     @{foreach (var color in Model.Colors) {<option value ="@color.Id">@color.Name</option>}}
+                                  </select>
+                                </li>
+                            }
+                         }
+                    </ul>
+                    </td>
+          }
+      }
+   </tr>
+   </table>
+</div>
+<div class="order">
+    <ul class="list-inline line">
+    </ul>
+</div>
+<div class="order">
+    <div style="width:100%;">
+        <h5>Образ</h5>
+    </div>
+</div>
+<div class="order">
+    <table style="width:auto;">
+        <tr>
+          @{foreach(var item in Model.ModelStyles)
+          {if (Model.StyleId == item.Id) { rcl = "check"; } else { rcl = "uncheck"; }
+              <td class="image-cell loc-cell">
+                  <ul class="loc">
+                    <li><img class ="tableImage row-image"  src="/uploads/@item.FileName" alt="Empty"/></li>
+                     <li>
+                          <a class="radio-container" id="stylesel-@item.Id">
+                              <er id="sel-@item.Id" class="radiost @rcl">v</er>
+                          </a>
+                      </li>
+                      @{rcl = "uncheck";}
+                      <li><h5>@item.Name</h5></li>
+                      <li><h5>+ @String.Format("{0:C0}", item.Price)</h5></li>
+                      <li><p>@item.Description</p></li>
+
+
+                  </ul>
+              </td>
+                }
+                
+            }
+            @{ var str = "";
+              if (Model.ModelStyles.FirstOrDefault(x => x.Id == Model.StyleId).Price == 0) { str = "hide"; }
+            }
+        
+          <td class="image-cell form-floating loc-area @str" id="stylAarea" style="padding-top:10px;" >
+                <textarea asp-for="StyleDescription" name="StyleDescription" id="StyleDescription"  maxlength="256" rows="9"></textarea>
+                <label asp-for="StyleDescription" id="StyleDescriptionlabel">Текст 0/256</label>
+          <table class="@str" id="styleTable">
+           <tr>
+              <td class="image-cell loc-cell" id="myImage-1">
+                    @{
+                        if (Model.Stylefiles.Any() && Model.Stylefiles.FirstOrDefault(x=>x.imPart == 1) !=null )
+                           {
+                            await Html.RenderPartialAsync("_mylistPhoto", new imgVM() { name = Model.Stylefiles.FirstOrDefault(x=>x.imPart == 1).FileName, number = 1 });
+
+                            } else  await Html.RenderPartialAsync("_mylistPhoto",new imgVM(){ name = "", number = 1 });
+                        }
+              </td>
+              <td class="image-cell loc-cell" id="myImage-2">
+                    @{
+                        if (Model.Stylefiles.Any()&& Model.Stylefiles.FirstOrDefault(x=>x.imPart == 2) !=null)
+                        {
+                            await Html.RenderPartialAsync("_mylistPhoto", new imgVM() { name = Model.Stylefiles.FirstOrDefault(x=>x.imPart == 2).FileName, number = 2 });
+
+                        } else  await Html.RenderPartialAsync("_mylistPhoto", new imgVM(){ name = "", number = 2 });
+                    }
+                </td>
+ 
+           </tr>
+
+                <tr>
+                   <td class="image-cell loc-area" colspan="2">
+                    <p style="color:lightgray;text-align:center;">
+                        добавьте короткое текстовое описание вашего образа. Загрузите изображения вещей, которыми вы хотите дополнить ваш образ или изображение вашего образа целиком.
+                    </p>
+                </td>
+           
+                </tr>
+          
+          </table>
+                
+          </td>
+   
+          
+   </tr>
+  
+
+   </table>
+</div>
+<div class="order">
+    <ul class="list-inline line">
+    </ul>
+</div>
+<div class="order">
+    <div style="width:100%;">
+        <h5>Видео</h5>
+    </div>
+</div>
+<div class="order">
+    <table>
+        <tr>
+             <td class="image-cell loc-cell">
+                  <ul class="loc">
+                    <li><img class ="tableImage row-image"  src="/images/black.png" alt="Empty"/></li>
+                     <li>@{if(Model.VideoId == 9999) { rcl = "check"; } else { rcl = "uncheck"; }}
+                     <a class="radio-container" id="videos-9999">
+                          <er id="sel-9999" class="radiovid @rcl">v</er>
+                     </a>
+                     </li>
+                     <li><h5>Без видео</h5></li>
+                     <li><h5>+ @String.Format("{0:C0}", 0)</h5></li>
+                  </ul>  
+                  
+             </td>
+            @{foreach(var item in Model.Videos)
+             {
+              <td class="image-cell loc-cell">
+                  <ul class="loc">
+                    <li>
+                        <video controls class="tableImage row-image" poster="/videos/@(item.FileName.First()).jpg">
+                            <source src="/videos/@item.FileName" type="video/mp4" allowfullscreen>
+                        </video>
+                    </li>
+                     <li>@{if(Model.VideoId == item.Id) { rcl = "check"; } else { rcl = "uncheck"; }}
+                        <a class="radio-container" id="videos-@item.Id">
+                            <er id="sel-@item.Id" class="radiovid @rcl">v</er>
+                        </a>
+                    </li>
+                    <li><h5 class="tableImage">@item.Name</h5></li>
+                    <li><h5 class="tableImage">+ @String.Format("{0:C0}", item.Price)</h5></li>
+                    <li><p class="tableImage">@item.Description</p></li>
+                 
+                  </ul>
+             </td>
+            }}
+
+         </tr>
+
+  
+   </table>
+</div>
+
+<div class="order">
+    <ul class="list-inline line">
+    </ul>
+</div>
+<div class="order">
+    <div style="width:100%;">
+        <h5>Описание изображения</h5>
+    </div>
+</div>
+<div class="order">
+    <div class="row">
+        <p class="fullrow">
+         Если необходимо, вы можете добавить короткое текстовое описание* и фото с техническими нюансами, например, как завязывать пояс на платье или подвернуть штанины на джинсах и пр.
+        </p>
+    </div>
+</div>
+<div class="order">
+    <table>
+    <tbody>
+        <tr>
+          <td class="image-cell form-floating loc-area" colspan="2" style="min-width:340px;">
+                <textarea asp-for="FooterDescription" name="FooterDescription" id="FooterDescription"  maxlength="256" rows="9"></textarea>
+                <label asp-for="FooterDescription" id="FooterDescriptionlabel">Текст 0/256</label>
+          </td>
+          @{for(int i = 0;i<2;i++)
+          {
+            <td class="image-cell loc-cell" id="myImage-@(i+3)">
+
+                @{
+                    if (Model.Footerfiles.Any() && Model.Footerfiles.FirstOrDefault(x=>x.imPart == (i+3)) !=null)
+                    {
+                        await Html.RenderPartialAsync("_mylistPhoto", new imgVM() { name = Model.Footerfiles.FirstOrDefault(x=>x.imPart == (i+3)).FileName, number = (i+3) });
+
+                    } else  await Html.RenderPartialAsync("_mylistPhoto", new imgVM(){ name = "", number = (i+3) });
+                }
+
+            </td>
+          }}
+   
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div class="order">
+    <div class="row">
+        <p class="fullrow">
+        *В описании можете дать название вещи (например <strong>“Платье красное”</strong>), а так же описание нужно, если в вашем товаре есть какая-то неочевидная особенность, на которую нужно обратить внимание. Например: “куртка 2-сторонняя”, “пояс завязать на бант за спиной” итд.
+        </p>
+        <p class="fullrow">
+        НЕ нужно писать в описании: “Сделайте куртые продающие фото, что бы модель была счастливой, игривой и что бы глядя на нее захотелось прям сразу купить вещь” - на результат такой текст НЕ повлияет, а что-то действительно важное может быть упущенно.
+        </p>
+    </div>
+
+</div>
+<div class="order">
+    <ul class="list-inline line">
+    </ul>
+</div>
+<div class="order">
+   <ul class="list-inline">
+       <li class="list-inline-item header">
+           <h5><a class="submit-photo" id="SaveRow">Сохранить</a></h5>
+       </li>
+   </ul>
+</div>
+

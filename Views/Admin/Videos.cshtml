@@ -1,0 +1,40 @@
+﻿@using ContentFactory.Models
+@{
+    ViewData["Title"] = "Редактировать видео";
+    Layout = "_Admin";
+}
+@model List<Video>
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="callout callout-info">
+            <strong>Редактировать видео:</strong><br>
+            <a>В данном разделе выможете отредактировать видео.</a><br>
+        </div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">  
+      </button>
+</div>
+<div class="child-content">
+ 
+        <div class="row">
+            <div class="col-md-6">
+                <section>
+                     @{await Html.RenderPartialAsync("_videoMenu", @Model[0]);}
+                </section> 
+
+                <div class="col-md-12" id="video-@Model[0]">
+                     @{await Html.RenderPartialAsync("_video", @Model[0]);}
+                </div>
+
+            </div>   
+             <div class="col-md-6">
+                <section>
+                     @{await Html.RenderPartialAsync("_videoMenu", @Model[1]);}
+                </section> 
+                <div class="col-md-12" id="video-@Model[1]">
+                     @{await Html.RenderPartialAsync("_video", @Model[1]);}
+                </div>
+            </div>   
+
+        </div>
+</div>
+

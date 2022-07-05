@@ -1,0 +1,74 @@
+﻿
+@model Model
+
+<div class="col-md-4">
+        <div class="col-md-12 model-frame">
+        <form method="post" data-ajax="true" asp-action="EditPartialModel" alt="@Model.Id" id="model-@Model.Id">
+            <div class="col-md-12">
+                <div class="facephoto">
+                    @if (Model.ModelImages.Any())
+                    {
+                        if (Model.ModelImages.Where(x => x.FaceImg == true).Count() > 0)
+                        {
+                            <img class="model-photo" src="/uploads/@Model.ModelImages.FirstOrDefault(x=>x.FaceImg == true).FileName"/>
+                        }
+                        else
+                        {
+                            <img class="model-photo" src="/images/no_photo.jpg"/>
+                        }}
+                </div>
+                <input asp-for="Id" class="form-control" autocomplete="off" aria-required="true" hidden="hidden"  id="ModelId"/>
+                <div class="form-floating">
+                    <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" asp-for="IsHide" id="sw">
+                          <label class="form-check-label"asp-for="IsHide" for="sw">Модель занята</label>
+                    </div>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="WorkDate" class="form-control" autocomplete="on" aria-required="true" />
+                    <label asp-for="WorkDate"></label>
+                    <span asp-validation-for="WorkDate" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="Name" class="form-control" autocomplete="on" aria-required="true" />
+                    <label asp-for="Name"></label>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="Size" class="form-control" autocomplete="on" aria-required="true" />
+                    <label asp-for="Size"></label>
+                    <span asp-validation-for="Size" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="FootSize" class="form-control" autocomplete="on" aria-required="true" />
+                    <label asp-for="FootSize"></label>
+                    <span asp-validation-for="FootSize" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="CategoryId" class="form-control" autocomplete="on" aria-required="true" hidden="hidden"/>
+                    <input asp-for="Growth" class="form-control" autocomplete="on" aria-required="true" />
+                    <label asp-for="Growth"></label>
+                    <span asp-validation-for="Growth" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="BreastVolume" class="form-control" autocomplete="on" aria-required="true" />
+                    <label asp-for="BreastVolume"></label>
+                    <span asp-validation-for="BreastVolume" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="Waist" class="form-control" autocomplete="on" aria-required="true" />
+                    <label asp-for="Waist"></label>
+                    <span asp-validation-for="Waist" class="text-danger"></span>
+                </div>
+                 <div class="form-floating">
+                    <input asp-for="Hips" class="form-control" autocomplete="on" aria-required="true" />
+                    <label asp-for="Hips"></label>
+                    <span asp-validation-for="Hips" class="text-danger"></span>
+                </div>
+            </div>
+            <button id="EditModelSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Сохранить</button>
+        </form>       
+        </div>
+    <hr />
+</div>
+

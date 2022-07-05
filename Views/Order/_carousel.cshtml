@@ -1,0 +1,32 @@
+﻿@using ContentFactory.ViewModels
+@using ContentFactory.Models
+
+@model List<ModelImage>
+<div id="carouselModel" class="carousel" data-bs-ride="carousel">
+    <div class="carousel-inner col-md-12">
+        @{
+            string active = "active";
+            foreach(var item in Model)
+            {
+                <div class="carousel-item @active">
+                    <div class="card-caruosel">
+                        <div class="img-wrapper"><img src="/uploads/@item.FileName" class="d-block w-100" alt=""> </div>
+                    </div>
+                </div>
+                active = "";
+            }
+        }
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselModel" data-bs-slide="prev">
+        <span><img class="c-arrow" src="~/images/left-carousel-arrow.png"></span>
+     
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselModel" data-bs-slide="next">
+        <span><img class="c-arrow"  src="~/images/right-carousel-arrow.png"></span>
+     
+    </button>
+</div>
+
+
+
+

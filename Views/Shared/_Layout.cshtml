@@ -1,0 +1,80 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   
+    <meta name="description" content=@ViewData["description"] />
+    <title>@ViewData["Title"] - Content Factory</title>
+
+     <link rel="stylesheet" href="~/lib/jquery-ui/jquery-ui.min.css" />
+     <link rel="stylesheet" href="~/lib/jquery-ui-themes/themes/base/theme.css" />
+     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+     <link rel="stylesheet" href="~/css/front.css" />
+     <link rel="stylesheet" href="~/css/carousel.css" />
+
+<div class="modal modal-dialog modal-fullscreen fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 id="staticBackdropLabel">Ваш заказ в работе</h5>
+              </div>
+              <div class="modal-body">
+                  <div class="imgcontent">
+                      <img class="popimg" src="~/images/Ok.png"/>
+                  </div>
+
+                  <p>Мы свяжемся с Вами в ближайшее время!</p>
+                  <p style="font-size:12px;">Мы обрабатываем заявки каждый день с 10-00 до 21-00 по мск!</p>
+                  <div class="imgcontent" style="padding-top:45px;">
+                        <p>Идет формирование документов...</p>
+                        <img class="loading" src="~/images/loading512x512.gif"/>
+                  </div>
+
+              </div>
+
+              <div class="modal-footer">
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(89389716, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/89389716" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+</head>
+<body class="maincontent">
+
+    <div class="cf-panel" id="results">
+        @RenderBody()
+    </div>  
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-ajax-unobtrusive/dist/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/js/front.js"></script>
+    <script src="~/lib/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/additional-methods.min.js"></script>
+    <script src="~/js/Carousel.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

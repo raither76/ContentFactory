@@ -1,0 +1,52 @@
+﻿@using ContentFactory.ViewModels
+@model OrderViewModel
+
+@using ContentFactory.Models
+
+        @{foreach(var item in Model.OrderItems.Where(x=>x.IsSave==true).ToList())
+            {
+              <div class="footer-side">
+                 <table class="footer-table">
+                     <tbody>
+                     <tr>
+                     <td style="width:100%;text-align:right;" colspan="2" class="drop">
+                            <a class="table-menu" id="ddMenu-@item.Id">
+                                <img class="custom-button" src="~/images/custom.png"/>
+                           </a>
+                           <ul class="drop-menu">
+                             <li><a class="dropdown-item remove-row" id="RemoveRow-@item.Id">Удалить</a></li>
+                             <li><a class="dropdown-item copy-row" id="CopyRow-@item.Id">Дублировать</a></li>
+                             <li><a class="dropdown-item" href="/Order/EditRow?Id=@item.Id">Редактировать</a></li>
+                           </ul>
+                     </td>
+                     </tr>
+                     <tr>
+                        <td class="fTitle" colspan="2">Тип товара</td>
+                     </tr>
+                     <tr>
+                        <td class="fcaption-inline" colspan="2">@item.Name</td>
+                     </tr>
+                     <tr><td class="fTitle"># товаров</td><td class="fcaption">@item.Quontity</td></tr>
+                     <tr><td class="fTitle"># фото</td><td class="fcaption">@item.photoNumber</td></tr>
+                     <tr><td class="fTitle"># видео</td><td class="fcaption">@item.VideoType</td></tr>
+                     <tr><td class="fTitle">Локация</td><td class="fcaption">@item.LocationType</td></tr>
+                     <tr><td class="fTitle">Стиль</td><td class="fcaption">@item.StyleType</td></tr> 
+                     <tr><td class="fTitle">Итого</td><td class="fcaption">@String.Format("{0:C0}", item.Price)</td></tr>                 
+                    </tbody>
+                 </table>
+             </div>
+            }
+        }
+
+            <div class="footer-side">
+                <h5 style="padding-left:15px;">Расчет</h5>
+                <ul class="list-inline" style="padding-left:15px;">
+                    <li class="list-inline-item">Количество товаров<span id="goods-count">@Model.GoodsCount</span></li>
+                    <li class="list-inline-item">Количество фото<span id="photos-count">@Model.PhotosCount</span></li>
+                    <li class="list-inline-item">Количество видео<span id="videos-count">@Model.VideosCount</span></li>
+                    <li class="list-inline-item itog">Итого<span id="ammount-order">@String.Format("{0:C0}",Model.ITOG)</span></li>
+                </ul>
+                <div class="text-center" style="margin-top:40px;margin-bottom:30px;">
+                    <a class="submit-photo" id="SaveOrder" href="/Order/Register?OrderId=@Model.OrderId" >Готово</a>
+                </div>
+            </div>

@@ -1,0 +1,81 @@
+﻿@using ContentFactory.Models
+@{
+    ViewData["Title"] = "Редактировать стили";
+    Layout = "_Admin";
+}
+@model List<ModelStyle>
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="callout callout-info">
+            <strong>Редактировать стили:</strong><br>
+            <a>В данном разделе выможете отредактировать стили.</a><br>
+        </div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">  
+      </button>
+</div>
+<div class="child-content">
+     <div class="col-md-12">
+           <table class="table table-success table-striped table-hover tblproduct">
+                  <thead>
+                      <tr>
+                          <th style="width:40%;text-align:center;">Наименование/Описание/Цена</th>
+                          <th style="width:50%;text-align:center;">Фото</th>
+                          <th style="width:10%;text-align:center;">Служебная</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                @{
+                    for(int i = 0; i<Model.Count;i++)
+                    {
+                         <tr>
+                             <td>
+                                <input asp-for="@Model[i].Id"  class="form-control" autocomplete="off" aria-required="true" hidden="hidden" />
+                                <input asp-for="@Model[i].Name"  id="Name-@Model[i].Id"  class="form-control float-end" autocomplete="off" aria-required="true" />
+                                <textarea asp-for="@Model[i].Description" id="Description-@Model[i].Id" class="form-control float-end" autocomplete="off" aria-required="true"></textarea>
+                                <input asp-for="@Model[i].Price" id="Price-@Model[i].Id"  class="form-control float-end" autocomplete="off" aria-required="true" />
+                             </td> 
+                          <td style="text-align:center;vertical-align:central;">
+                              <a class='nav-link change-Style-image' id="change-@Model[i].Id" >
+                                   <img class ="tableImage" id="styleim-@Model[i].Id" src="/uploads/@Model[i].FileName" alt=""/>
+                              </a>
+                          </td>
+                          <td style="vertical-align:central;">
+                              <ul class='navbar-nav titlbid'>
+                                  <li class='nav-item '>
+                                     <a data-ajax = 'true' class='nav-link saveStyle' id="save-@Model[i].Id">
+                                     <img class ="bidicon" src="/images/save.png"/>
+                                     </a>
+                                  </li>
+                                  <li class='nav-item '>
+                                     <a data-ajax = 'true' class='nav-link deltr' href='/Admin/RemoveStyle?Id=@Model[i].Id'>
+                                     <img class ="bidicon" src="/images/delete.png"/>
+                                     </a>
+                                  </li>
+                              </ul>
+                          </td>
+                        </tr>
+
+                    }}
+                         <tr>
+                             <td>
+                                <input id="newStyle"  class="form-control float-end" autocomplete="off" aria-required="true" />
+                             </td> 
+                              <td style="text-align:center;vertical-align:central;">
+                                  <a id="styleresults" class='nav-link add-style-image'>
+                                       <img class ="tableImage" src="/images/empty.png" alt="Empty"/>
+                                  </a>
+                              </td>
+                              <td style="vertical-align:central;">
+                                  
+                              </td>
+                         </tr>
+                  </tbody>
+
+           </table>
+    </div>
+     <form name="changeImage1" method="post" enctype="multipart/form-data" hidden="hidden">
+         <input type="file" id="changeStyleImage" class="form-control" accept=".jpeg,.jpg,.png">
+         <input type="file" id="change-StyleImage" class="form-control" accept=".jpeg,.jpg,.png">
+    </form>
+</div>
+

@@ -1,0 +1,55 @@
+﻿@using ContentFactory.Models
+@using ContentFactory.Code
+
+@model List<ModelImage>
+<div class="carousel-wrapper">
+      <div class="carousel">
+          <table class="table table-success table-striped table-hover">
+              <thead>
+                  <tr>
+                      <th style="width:10%;text-align:center;">#</th>
+                      <th style="width:10%;text-align:center;">Фото обложки</th>
+                      <th style="width:70%;text-align:center;">Фото</th>
+                      <th style="width:10%;text-align:center;">Служебная</th>
+                  </tr>
+              </thead>
+              <tbody>
+
+                    @{
+                         var i = 1;
+                         foreach(var im in Model)
+                         {
+                            <tr>
+                             <th style="width:10%;">@i</th>
+                             <td style="width:10%;">
+                             <label class="form-check form-switch">
+                                  <input class="form-check-input changelogo" type="checkbox" asp-for="@im.FaceImg" alt="@im.Id" id="sw-@im.Id">
+                             </label>
+                             </td>
+                             <td style="width:70%;text-align:center;vertical-align:central;">
+                                 <img class ="tableImage" src="/uploads/@im.FileName" alt="@im.FileName"/>
+                             </td>
+                             <td style="width:10%;vertical-align:central;">
+                                 <ul class='navbar-nav titlbid'>
+                                 <li class='nav-item '>
+                                    <a data-ajax = 'true' class='nav-link deltr'  href='/Admin/RemoveModelImage?Id=@im.Id'>
+                                    <img class ="bidicon" src="/images/delete.png"/>
+                                    </a>
+                                 </li>
+                                 </ul>
+                             </td>
+
+                            </tr>
+                            i++;
+                          }
+                     }
+              </tbody>
+
+          </table>
+      </div>
+</div>
+
+
+
+  
+   

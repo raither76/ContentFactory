@@ -1,0 +1,11 @@
+﻿@using ContentFactory.Models
+@using ContentFactory.Components
+@using Microsoft.AspNetCore.Identity
+@using ContentFactory.Code
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@model List<Category>
+@BuildHelper.BuildCatalog(Html, Model)
+
+

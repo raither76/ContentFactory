@@ -1,0 +1,7 @@
+﻿@using ContentFactory.ViewModels
+@model List<Catalog> 
+<h5>Подкатегория</h5>
+<select name="CurrentChildCatalog" value="CurrentChildCatalog" autocomplete="on" id="CatalogId" aria-required="true" >
+    @{foreach (var item in Model) {<option value ="@item.Id">@item.Name</option>}}
+</select>
+       

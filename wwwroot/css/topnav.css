@@ -1,0 +1,426 @@
+﻿
+.b2b_header {
+    font-family: Open Sans Condensed;
+    text-transform: uppercase;
+    background-color:#293042;
+}
+
+@media (max-width: 768px) {
+    .b2b_header {
+        display: none;
+    }
+
+    .hide-nav {
+        display: none;
+    }
+}
+.navbar-b2b {
+    background-color:#293042;
+    border-color: #fff;
+    padding-left:0;
+    margin-bottom: 0px;
+    height: 85px;
+}
+
+
+    .navbar-b2b .navbar-brand {
+        color: #293042;
+        
+    }
+
+.navbar-b2b .navbar-brand:hover,
+.navbar-b2b .navbar-brand:focus {
+    color: #fe6927;
+}
+
+.navbar-b2b .navbar-text {
+    color: #ccc;
+}
+.navbar-b2b .navbar-nav > li > a {
+    color: #ccc;
+}
+
+.navbar-b2b .navbar-nav > li > a:hover,
+.navbar-b2b .navbar-nav > li > a:focus {
+    color:black;
+    background-color: transparent;
+}
+
+.navbar-b2b .navbar-nav > .active > a,
+.navbar-b2b .navbar-nav > .active > a:hover,
+.navbar-b2b .navbar-nav > .active > a:focus {
+    color: #0f04b5;
+    background-color: transparent;
+}
+
+.navbar-b2b .navbar-nav > .disabled > a,
+.navbar-b2b .navbar-nav > .disabled > a:hover,
+.navbar-b2b .navbar-nav > .disabled > a:focus {
+    color: #444;
+}
+
+.navbar-b2b .navbar-nav > .open > a,
+.navbar-b2b .navbar-nav > .open > a:hover,
+.navbar-b2b .navbar-nav > .open > a:focus {
+    color: #000;
+}
+.container-fluid {
+    padding: 0px;
+}
+
+
+.nav > li > a {
+    white-space: nowrap;
+}
+.nav li.panel {
+    margin-bottom: 0;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.navbar-nav > li {
+    font-family: Open Sans Condensed;
+    text-transform: uppercase;
+    display: inline;
+    text-size-adjust: 30%;
+}
+.navbar-nav .nav-item > form button {
+    text-transform: uppercase;
+ 
+}
+.navlogo2 {
+    margin: 5px;
+    width: 45px;
+    left: 0px;
+}
+.navbar-brand {
+    font-family: Open Sans Condensed;
+    font:16px;
+    width:120px;
+    text-transform: uppercase;
+}
+a.navbar-brand {
+    font-family: Open Sans Condensed;
+    font: 14px;
+
+    text-transform: uppercase;
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+    .tit {
+    font: 500 28px;
+    color: #000;
+}
+@media (max-width: 768px) {
+
+
+    .main-sidebar .nav li a > i {
+        animation: 0.3s fadein;
+        animation-fill-mode: forwards;
+    }
+
+    .navbar-brand {
+        width: 250px;
+        white-space: nowrap;
+    }
+
+    .content,
+    .footer {
+        margin-left: 0;
+    }
+
+
+    .sticky.is-sticky {
+        min-height: 55px;
+    }
+}
+.sticky.navbar {
+    border-radius: 0;
+    border: none;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.sticky .show-is-sticky,
+.sticky .show-not-sticky {
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.sticky .show-not-sticky {
+    opacity: 1;
+    visibility: visible;
+    height: 60px;
+}
+.navlogo3 {
+    margin-top: 4px;
+    margin-right: 5px;
+    width: 35px;
+    float: left;
+}
+
+.sticky.is-sticky {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 100;
+    font: 14px Open Sans Condensed;
+    font-weight: 400;
+    box-shadow: 0 0 12px rgba(0,0,0,0.8);
+    height: 55px;
+}
+
+.sticky.show-not-sticky .navlogo3 {
+    display: none;
+}
+
+
+
+.sticky.is-sticky .navlogo3 {
+    width: 30px;
+    margin-top: 5px;
+}
+
+.sticky.is-sticky .mainmenu {
+}
+
+.sticky.is-sticky.navbar {
+    min-height: 50px;
+}
+
+.sticky.is-sticky .show-is-sticky {
+    opacity: 1;
+    visibility: visible;
+    height: 50px;
+}
+
+.sticky.is-sticky .show-not-sticky {
+    opacity: 0;
+    visibility: hidden;
+    height: 60px;
+    font: 18px Open Sans Condensed;
+    font-weight: 400;
+}
+
+
+.navbar-b2b-dark {
+    background-color: #293042;
+    color: antiquewhite;
+    font: 500;
+    margin-bottom: 0px !important;
+    min-height: 55px;
+    height: 60px;
+    max-width: 100%;
+}
+.navbar-collapse {
+    background-color: #293042;
+    color: antiquewhite;
+    font: 500;
+  /*  height:100%;*/
+
+}
+
+
+
+.navbar-b2b-dark .navbar-brand {
+    color: #ccc;
+}
+
+        .navbar-b2b-dark .navbar-brand:hover,
+        .navbar-b2b-dark .navbar-brand:focus {
+            color: #fe6927;
+        }
+
+    .navbar-b2b-dark .navbar-text {
+        color: #ccc;
+    }
+
+    .navbar-b2b-dark .navbar-nav > li > a {
+        color: azure;
+    }
+
+        .navbar-b2b-dark .navbar-nav > li > a:hover,
+        .navbar-b2b-dark .navbar-nav > li > a:focus {
+            color: brown;
+
+        }
+
+    .navbar-b2b-dark .navbar-nav > .active > a,
+    .navbar-b2b-dark .navbar-nav > .active > a:hover,
+    .navbar-b2b-dark .navbar-nav > .active > a:focus {
+        color: darkred;
+
+    }
+
+    .navbar-b2b-dark .navbar-nav > .disabled > a,
+    .navbar-b2b-dark .navbar-nav > .disabled > a:hover,
+    .navbar-b2b-dark .navbar-nav > .disabled > a:focus {
+        color: #444;
+    }
+
+    .navbar-b2b-dark .navbar-nav > .open > a,
+    .navbar-b2b-dark .navbar-nav > .open > a:hover,
+    .navbar-b2b-dark .navbar-nav > .open > a:focus {
+        color: brown;
+
+    }
+.navbar-dark .navbar-nav .nav-item {
+    max-height: 60px;
+    display: inline-block;
+    white-space: nowrap;
+    padding-left:10px;
+}
+.navbar-dark .navbar-nav .nav-item .nav-link {
+    color: #fff;
+    font: bolder;
+}   
+
+.navbar-dark .navbar-nav .nav-item .nav-link:focus,
+.navbar-dark .navbar-nav .nav-item .nav-link:hover {
+    color: #fe6927;
+}
+
+/*---------------------------------------------togglebutton--------------------------------------------*/
+section .topnav {
+    float: left;
+    min-width: 150px;
+    width: 35px;
+    padding: 25px 0;
+    min-height: 35px;
+}
+.topnav .checkbox {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+        .topnav .checkbox:after, .checkbox:before {
+            font-family: FontAwesome;
+            font-feature-settings: normal;
+            -webkit-font-kerning: auto;
+            font-kerning: auto;
+            font-language-override: normal;
+            font-stretch: normal;
+            font-style: normal;
+            font-synthesis: weight style;
+            font-variant: normal;
+            font-weight: normal;
+            text-rendering: auto;
+        }
+
+        .topnav .checkbox label {
+            width: 90px;
+            height: 35px;
+            background: #ccc;
+            position: relative;
+            display: inline-block;
+            border-radius: 17.5px;
+            transition: 0.4s;
+        }
+
+            .topnav .checkbox label:after {
+                content: "";
+                position: absolute;
+                width: 55px;
+                height: 35px;
+                border-radius: 100%;
+                left: 0px;
+                top: -4px;
+                z-index: 2;
+                background: #fff;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+                transition: 0.4s;
+            }
+
+        .topnav .checkbox input {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+            .topnav .checkbox input:hover + label:after {
+                box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+            }
+
+            .topnav .checkbox input:checked + label:after {
+                left: 40px;
+            }
+
+.model-13 .checkbox:after {
+    content: "Продать";
+    font-family: Open Sans Condensed;
+    position: absolute;
+    color: #fe6927;
+    top: 6px;
+    right: 8px;
+}
+
+.model-13 .checkbox label {
+    background: none;
+    border: 2px solid #fe6927;
+    height: 35px;
+    border-radius: 17.5px;
+}
+
+    .model-13 .checkbox label:after {
+        content: "Купить";
+        font-family: Open Sans Condensed;
+        color: #fff;
+        line-height: 25px;
+        text-indent: 100px;
+        background: #fe6927;
+        overflow: hidden;
+        box-shadow: none;
+        text-align: center;
+        border-radius: 35px;
+        transform: translateX(-50px);
+        -moz-transition: all 0.4s 0.2s, width 0.2s linear, text-indent 0.4s linear;
+        -o-transition: all 0.4s 0.2s, width 0.2s linear, text-indent 0.4s linear;
+        -webkit-transition: all 0.4s, width 0.2s linear, text-indent 0.4s linear;
+        -webkit-transition-delay: 0.2s, 0s, 0s;
+        transition: all 0.4s 0.2s, width 0.2s linear, text-indent 0.4s linear;
+        top: 2px;
+        left: auto;
+        right: 2px;
+        width: 32px;
+        height: 28px;
+    }
+
+.model-13 .checkbox input:checked + label {
+    border-color: #329043;
+}
+
+    .model-13 .checkbox input:checked + label:after {
+        background: #3fb454;
+        left: auto;
+        transform: translateX(0px);
+        -moz-transition: all 0.4s, width 0.2s linear 0.4s, text-indent 0.3s linear 0.4s;
+        -o-transition: all 0.4s, width 0.2s linear 0.4s, text-indent 0.3s linear 0.4s;
+        -webkit-transition: all 0.4s, width 0.2s linear, text-indent 0.3s linear;
+        -webkit-transition-delay: 0s, 0.4s, 0.4s;
+        transition: all 0.4s, width 0.2s linear 0.4s, text-indent 0.3s linear 0.4s;
+        width: 80px;
+        text-indent: 0;
+    }
+
+
+
+/*---------------------------------------------togglebutton--------------------------------------------*/

@@ -1,0 +1,113 @@
+﻿@using ContentFactory.ViewModels
+@model CatalogViewModel
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="callout callout-info">
+            <strong>Добавление фото:</strong><br>
+            <a>В данном разделе выможете добавить фотографии для категорий товаров.</a><br>
+        </div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">  
+      </button>
+</div>
+<div class="child-content row">
+     <div class="col-md-12">
+
+        <form id="AddImagesForm" asp-action="EditProduct" method="post"  class="row">
+            <div class="col-md-6">
+                  <h2 style="color:black;">Товар</h2>
+                  <div class="form-floating">
+                      <input asp-for="Catalog.Id" class="form-control" autocomplete="ID" aria-required="true" hidden="hidden" id="CatId" />
+                      <label asp-for="Catalog.Id"></label>
+                      <span asp-validation-for="Catalog.Id" class="text-danger"></span>
+                  </div>
+                  <div class="form-floating">
+                      <input asp-for="Catalog.Name" class="form-control" autocomplete="off" aria-required="true" />
+                      <label asp-for="Catalog.Name"></label>
+                      <span asp-validation-for="Catalog.Name" class="text-danger"></span>
+                  </div>
+                  <div class="input-group form-floating" >
+                       <div class="form-floating col-md-3">
+                          <input asp-for="Catalog.Price3" class="form-control dbl"  id="price3" autocomplete="off" aria-required="true" />
+                          <label for="price3">Цена[3шт]</label>
+                       </div>
+                       <div class="form-floating col-md-2">    
+                          <input asp-for="Catalog.Price6" class="form-control dbl"  id="price6" autocomplete="off" aria-required="true" />
+                          <label for="price6">Цена[6шт]</label>
+                       </div>
+                       <div class="form-floating col-md-2"> 
+                           <input asp-for="Catalog.Price9" class="form-control dbl"  id="price9" autocomplete="off" aria-required="true" />
+                          <label for="price9">Цена[9шт]</label>
+                       </div>
+                       <div class="form-floating col-md-2"> 
+                          <input asp-for="Catalog.Price12" class="form-control dbl"  id="price12" autocomplete="off" aria-required="true" />
+                          <label for="price12">Цена[12шт]</label>
+                       </div>
+                       <div class="form-floating col-md-3"> 
+                          <input asp-for="Catalog.Price15" class="form-control dbl"  id="price15" autocomplete="off" aria-required="true" />
+                          <label for="price15">Цена[15шт]</label>
+                       </div>
+                   
+
+                  </div>
+                  <div class="form-floating">
+                      <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" asp-for="Catalog.isVisible" id="sw">
+                            <label class="form-check-label"asp-for="Catalog.isVisible" for="sw">Показывать раздел на сайте</label>
+                      </div>
+                  </div>
+                  <button id="AddImagesSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Сохранить</button>
+            </div>
+            <div class="col-md-6">
+                 <div class="form-floating">
+                     <a class="w-100 btn btn-lg btn-danger" style="height:85px;font-size:25px;vertical-align:central;word-wrap:break-word;padding-top:15px;" href="/Admin/RemoveCatalog?Id=@Model.Catalog.Id">Удалить раздел "@Model.Catalog.Name"</a>
+                 </div>
+                <div class="alert fullscr alert-success alert-dismissible fade show" role="alert">
+                    <div class="callout callout-info">
+                        <strong>Категории:</strong><br>
+                        <a>Можете при желании отредактировать наименование группы и категории товара.</a><br>
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input asp-for="CategoryId" class="form-control" autocomplete="ID" aria-required="true" hidden="hidden"  id="CategoryId"/>
+                            <input asp-for="ParentId" class="form-control" autocomplete="ID" aria-required="true" hidden="hidden"  id="ParentId"/>
+                         <div class="form-floating">
+                            <input asp-for="CategoryName" class="form-control" autocomplete="off" aria-required="true" disabled="disabled" id="categoryName" />
+                            <label asp-for="CategoryName"></label>
+                            <span asp-validation-for="CategoryName" class="text-danger"></span>
+                        </div>
+                            <div class="form-floating input-group ">
+                                <input asp-for="CatalogName" class="form-control" autocomplete="off" aria-required="true" disabled="disabled" aria-describedby="button-addon2" id="parentName"/>
+                                <label asp-for="CatalogName"></label>
+                                <a class="btn btn-danger" href="/Admin/RemoveParentCatalog?Id=@Model.ParentId"><img class="bidicon" src="~/images/delete.png"></a>
+                                <span asp-validation-for="CatalogName" class="text-danger"></span>
+                            </div>
+                        <div class="form-floating">
+                            <div class="form-check form-switch">
+                                  <input class="form-check-input" type="checkbox" asp-for="isChange" id="changeroot">
+                                  <label class="form-check-label"asp-for="isChange" for="sw">Изменить названия группы или категории</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">  
+                    </button>
+                </div>  
+            </div>
+
+        </form>
+    </div>
+    <hr />
+    <form name="uploadimages" method="post" enctype="multipart/form-data">
+          <div class="upload">
+                  <div class="form-floating">
+                      <input type="file" class="form-control" multiple accept=".jpeg,.jpg,.png" id="images" style="padding-top: 35px;">
+                      <label class="input-group-text" for="files">Выберите файлы (*.jpeg, *.jpg, *.png)</label>
+                   </div>
+                   <hr />
+                  <div class="progress">
+                  <div class="progress-bar"></div>
+                  <div class="progress-value">0 %</div>
+                  </div>
+                  <div class="error"></div>
+             </div> 
+    </form>
+<div id="productimages" class="carousel-1 owl-carousel child-content">
+      @{await Html.RenderPartialAsync("_productCarusel", @Model.Catalog.CatalogImages);}
+</div>
+</div>

@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Content Factory - Главная";
+}
+@using ContentFactory.ViewModels
+@model IndexViewModel
+<figure class="text-center">
+  <blockquote class="blockquote">
+    <p>Выберите свою съемку</p>
+  </blockquote>
+</figure>
+@{foreach (var item in Model.Rows)
+     {
+         <div class="row model-row text-center">
+              @{await Html.RenderPartialAsync("_modelPartial", @item._groupModels);}
+         </div>
+    
+    
+     }}
+    
+    

@@ -1,0 +1,122 @@
+﻿@{
+    ViewData["Title"] = "Content Factory - Заказ";
+}
+@using ContentFactory.ViewModels
+@model OrderViewModel
+
+<link rel="stylesheet" href="~/css/orderTable.css" />
+<form name="orderForm" asp-action="SaveData" id="orderForm" method="post" enctype="multipart/form-data" >
+    <button type="submit" id="submit" hidden="hidden"></button>
+    <input type="file" name="myphotos" id="myphotos" class="form-control vid" accept=".jpeg,.jpg,.png" hidden="hidden">
+    <section id="topOrder">
+        <div class="order">
+            <div class="left-side">
+                <h4>Ваш заказ</h4>
+                <h5>Создайте список ваших товаров, что бы получить мгновенный расчет</h5>
+                <p>Выберите категории ваших товаров, выберите ракурсы, количество фото, видео, локации, стилизацию.</p>
+                <p>Общая стоимость будет рассчитана автоматически.</p>
+                <div style="margin-top:40px;margin-bottom:30px;">
+                    <a class="submit-photo finish" id="addOrderRow" href="#FillRow">Добавить товар</a>
+                </div>
+            </div>
+            <div class="right-side topitog">
+                <h5 style="padding-left:15px;">Расчет</h5>
+                <ul class="list-inline" style="padding-left:15px;">
+                    <li class="list-inline-item">Количество товаров<span id="goods-count">@Model.GoodsCount</span></li>
+                    <li class="list-inline-item">Количество фото<span id="photos-count">@Model.PhotosCount</span></li>
+                    <li class="list-inline-item">Количество видео<span id="videos-count">@Model.VideosCount</span></li>
+                    <li class="list-inline-item itog">Итого<span id="ammount-order">@String.Format("{0:C0}",Model.ITOG)</span></li>
+                </ul>
+                @{
+                    if (Model.OrderItems.Where(x=>x.IsSave==true).Any())
+                    {
+                         <div class="text-center" style="margin-top:40px;margin-bottom:30px;">
+                             <a class="submit-photo" id="SaveOrder" href="/Order/Register?OrderId=@Model.OrderId" >Готово</a>
+                         </div> 
+                    }
+
+                }
+
+            </div>
+        </div>
+        <div class="order" id="orderTable" style="margin-bottom:35px;">
+              @{await Html.RenderPartialAsync("_orderTable", Model.OrderItems.Where(x=>x.IsSave==true).ToList());}
+        </div>
+
+            @{
+                var st=""; if (Model.isEdit == false) st = "hidden='hidden'";
+            }
+            <div id="param" @st>
+            <div class="order newgood">
+               <ul class="list-inline line">
+                   <li class="list-inline-item header">
+                       <h5>Новый товар</h5>
+                       <span><a class="submit-photo" id="SaveRow">Сохранить</a></span>
+                   </li>
+               </ul>
+            </div>
+            <div class="order">
+                <div class="right-side" style="border:none;" id="myImage-0">
+                    @{
+                        if (Model.OrderItems.FirstOrDefault(x => x.Id == Model.CurrentOrderItem).OrderFiles.Any())
+                        {
+                             await Html.RenderPartialAsync("_myPhoto",Model.OrderItems.FirstOrDefault(x=>x.Id == Model.CurrentOrderItem).OrderFiles.OrderBy(q=>q.Id).First().FileName);
+
+                        } else  await Html.RenderPartialAsync("_myPhoto","");
+                    }
+                </div>
+                <div class="left-side">
+                    <ul style="width:100%;" class="top-ul">
+                        <li class="list-inline-item"><h5>Категория</h5>
+                                <select asp-for="CurrentRootCatalog" name="CurrentRootCatalog" value="CurrentRootCatalog" autocomplete="on" aria-required="true" id="category" >
+                                    @{foreach (var item in Model.Catalogs) {<option value ="@item.Id">@item.Name</option>}}
+                                </select>
+                        </li>
+                    </ul>
+                    <ul style="width:100%;">
+                        <li class="list-inline-item" id="products"><h5>Подкатегория</h5>
+                             <select asp-for="CurrentChildCatalog" name="CurrentChildCatalog" value="@Model.CurrentChildCatalog" id="CatalogId" autocomplete="on" aria-required="true" >
+                                 @{foreach (var item in Model.Products) {<option value ="@item.Id">@item.Name</option>}}
+                             </select>
+                        </li>
+                    </ul>
+                    <ul style="width:100%;">
+                        <li class="list-inline-item"><h5 style="margin-bottom:2px;">Количество</h5>
+                            <input asp-for="NumberPhotos" name="NumberPhotos" id="NumberPhotos" hidden="hidden">
+                            <input asp-for="StyleId" name="StyleId" id="StyleId" hidden="hidden">
+                            <input asp-for="LocId" name="LocId" id="LocId" hidden="hidden">
+                            <input asp-for="VideoId" name="VideoId" id="VideoId" hidden="hidden">
+
+                            <input asp-for="OrderId" name="OrderId"  id="OrderId" value="@Model.OrderId" hidden="hidden">
+                            <input asp-for="ModelId" name="ModelId"  id="ModelId" value="@Model.ModelId" hidden="hidden">
+                            <input asp-for="CurrentOrderItem" name="CurrentOrderItem" value="@Model.CurrentOrderItem" id="CurrentItem" hidden="hidden">
+                            <input asp-for="Quontity" name="Quontity" value="@Model.Quontity" id="Quontity">
+                            <p>однотипных товаров, которые будут сниматься одинаково</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="order">
+               <ul class="list-inline line">
+                   <li class="list-inline-item header">
+                       <h5 class="newgood">Заполнить позицию заказа</h5>
+                       <span><a class="submit-photo" id="FillRow">Далее</a></span>
+                   </li>
+               </ul>
+            </div>
+        </div>
+        <section id="orderItem">
+  
+        </section>
+        <div class="order phonegood" id="footerGoods">
+          @{await Html.RenderPartialAsync("_orderFooter", Model);}
+
+        </div>
+    </section>
+</form>
+<script>
+    window.onload = function()
+    {
+        document.getElementById('FillRow').scrollIntoView(true);
+    }
+</script>

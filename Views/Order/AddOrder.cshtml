@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Content Factory - Заказ";
+}
+
+@using ContentFactory.ViewModels
+@model Model
+<div class="row model-row text-center">
+    <div class="card-group">
+          <input asp-for="Id" class="form-control" autocomplete="off" aria-required="true" hidden="hidden"  id="ModelId"/>
+          <div class="card-body-left">
+            <p class="card-title">Модель @Model.Name</p>
+            <ul class="list-inline mod-caption">
+                <li class="list-inline-item">Рост @Model.Growth см</li>
+                <li class="list-inline-item">Обеъем груди @Model.BreastVolume см</li>
+                <li class="list-inline-item">Объем талии @Model.Waist см</li>
+                <li class="list-inline-item">Объем бёдер @Model.Hips см</li>
+                <li class="list-inline-item">Размер ноги @Model.FootSize</li>
+                @{
+                    if (Model.Bust != null || Model.Bust != "")
+                    {
+                        <li class="list-inline-item">Бюст @Model.Bust</li>
+                    }
+                }
+                <li class="list-inline-item">Размер одежды @Model.Size</li>
+            </ul>
+            <p class="card-text mod-date">Дата съемки: @Model.WorkDate.ToLongDateString()</p>
+          </div>
+        <div class="first-page">
+             @{await Html.RenderPartialAsync("_carousel", @Model.ModelImages);}
+        </div>
+     </div>
+     <div class="text-right"><p class="footer-caption">Все фото сделаны фотостудией CONTENT FACTORY ©</p></div>
+<div class="text-center" style="margin-top:35px;">
+    <a class="submit-photo" id="localst" href="/Order/Order?ModelId=@Model.Id&orderId=0" >Записаться на съемку</a>
+</div>
+
+</div>
+

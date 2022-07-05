@@ -1,0 +1,70 @@
+﻿@using ContentFactory.ViewModels
+@{
+    ViewData["Title"] = "Заказы";
+    Layout = "_Admin";
+}
+@model List<OrderVM>
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="callout callout-info">
+            <strong>Заказы:</strong><br>
+            <a>В данном разделе выможете просматривать историю заказов.</a><br>
+        </div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">  
+      </button>
+</div>
+<div class="child-content">
+     <div class="row">
+      
+      @{
+          <table class="table table-hover">
+              <thead>
+                  <tr>
+                    <th scope="col"># Заказа</th>
+                    <th scope="col">Дата</th>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Бренд</th>
+                    <th scope="col">Телеграмм</th>
+                    <th scope="col">Модель</th>
+                    <th scope="col">Сумма</th>
+                    <th scope="col">Служебная</th>
+                  </tr>
+              </thead>
+             
+              <tbody>
+                    @{
+                        foreach(var item in Model)
+                        {
+                            <tr>
+                                <th scope="row">@item.OrderNumber</th>
+                                <td>@item.Date.ToShortDateString()</td>
+                                <td>@item._user.Nick</td>
+                                <td>@item._user.Brend</td>
+                                <td>@item._user.TelegramId</td>
+                                <td>@item.ModelName</td>
+                                <td>@String.Format("{0:C0}",item.Price)</td>
+                                <td>
+                                <ul>
+                                    <li class="nav-item"><a class="nav-link order-link" href="/Admin/dowloadPdf?id=@item.OrderId">
+                                    <img class="bidicon" src="/images/pdf.png"/></a></li>
+                                     <li class="nav-item"><a class="nav-link order-link" href="/Admin/dowloadXlsx?id=@item.OrderId">
+                                    <img class="bidicon" src="/images/excel.ico"/></a></li>
+                                    <li class="nav-item"><a class="nav-link order-link removeOrder" id="removeOrder-@item.OrderId">
+                                    <img class="bidicon" src="/images/delete.png"/></a></li>
+                                    </ul>
+                                
+                                
+                                </td>
+                            </tr>
+                        }
+                    }
+
+              
+              </tbody>
+          
+          </table>
+       }
+
+    </div>
+</div>
+

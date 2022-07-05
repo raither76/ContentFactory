@@ -1,0 +1,53 @@
+﻿@using ContentFactory.ViewModels
+@model List<OrderItem>
+
+@using ContentFactory.Models
+<div class="table-wrapper">
+ <table class="order-table">
+    <thead>
+        <tr>
+            <th style="width:5%;text-align:center;">#</th>
+            <th>Тип товара</th>
+            <th># товаров</th>
+            <th># фото</th>
+            <th># видео</th>
+            <th>Локация</th>
+            <th>Стиль</th>
+            <th>Итого</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 1;
+            foreach(var item in Model)
+            {
+                <tr id="tr-@item.Id">
+                    <td style="align-content:center;width:5%;">@(i++)</td>
+                    <td>@item.Name</td>
+                    <td>@item.Quontity</td>
+                    <td>@item.photoNumber</td>
+                    <td>@item.VideoType</td>
+                    <td>@item.LocationType</td>
+                    <td>@item.StyleType</td>
+                    <td>@String.Format("{0:C0}", item.Price)</td>
+                    <td class="drop">
+                           <a class="table-menu" id="ddMenu-@item.Id">
+                                <img class="custom-button" src="~/images/custom.png"/>
+                          </a>
+                          <ul class="drop-menu">
+                            <li><a class="dropdown-item remove-row" id="RemoveRow-@item.Id">Удалить</a></li>
+                            <li><a class="dropdown-item copy-row" id="CopyRow-@item.Id">Дублировать</a></li>
+                            <li><a class="dropdown-item" href="/Order/EditRow?Id=@item.Id">Редактировать</a></li>
+                          </ul>
+
+                    </td>
+                </tr>
+                
+            }
+        }
+
+    </tbody>
+
+</table>
+</div>

@@ -1,0 +1,106 @@
+﻿@using ContentFactory.ViewModels
+@{
+    ViewData["Title"] = "Редактировать модель";
+    Layout = null;
+}
+@model ModelViewModel
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="callout callout-info">
+            <strong>@ViewData["Title"]:</strong><br>
+            <a>В данном разделе выможете отредактировать данные модели.</a><br>
+        </div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">  
+      </button>
+</div>
+<div class="child-content row">
+     <div class="col-md-6">
+         <div class="form-floating">
+             <a class="w-100 btn btn-lg btn-danger" style="height:85px;font-size:40px;vertical-align:central;" href="/Admin/RemoveModel?Id=@Model._model.Id">Удалить модель</a>
+         </div>
+        <form id="EditModelForm"  asp-action="EditModel" method="post">
+            <h2>@ViewData["Title"]</h2>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="_model.Id" name="_model.Id" class="form-control" autocomplete="off" aria-required="true" hidden="hidden"  id="ModelId"/>
+            <div class="form-floating">
+                <input asp-for="_model.Name" class="form-control" autocomplete="on" aria-required="true" />
+                <label asp-for="_model.Name"></label>
+                <span asp-validation-for="_model.Name" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" asp-for="_model.IsHide" id="sw">
+                      <label class="form-check-label"asp-for="_model.IsHide" for="sw">Модель занята</label>
+                </div>
+            </div>
+            <div class="form-floating">
+                <input asp-for="_model.WorkDate" class="form-control" autocomplete="on" aria-required="true" />
+                <label asp-for="_model.WorkDate"></label>
+                <span asp-validation-for="_model.WorkDate" class="text-danger"></span>
+            </div>
+           <div class="form-floating">
+                <select asp-for="_model.CategoryId" class="form-control" name="_model.CategoryId" value="_model.CategoryId" autocomplete="on" aria-required="true" >
+                    @{foreach (var item in Model.Categories) {<option value ="@item.Id">@item.Name</option>}}
+                </select>
+                <label asp-for="_model.CategoryId"></label>
+                <span asp-validation-for="_model.CategoryId" class="text-danger"></span>
+            </div>
+                <div class="form-floating">
+                    <input asp-for="_model.FootSize" class="form-control" autocomplete="on" aria-required="true" />
+                    <label asp-for="_model.FootSize"></label>
+                    <span asp-validation-for="_model.FootSize" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="_model.Size" class="form-control" autocomplete="on" aria-required="true" />
+                    <label asp-for="_model.Size"></label>
+                    <span asp-validation-for="_model.Size" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="_model.Growth" class="form-control" autocomplete="on" aria-required="true" />
+                    <label asp-for="_model.Growth"></label>
+                    <span asp-validation-for="_model.Growth" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="_model.BreastVolume" class="form-control" autocomplete="on" aria-required="true" />
+                    <label asp-for="_model.BreastVolume"></label>
+                    <span asp-validation-for="_model.BreastVolume" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="_model.Bust" class="form-control" autocomplete="on" aria-required="true" />
+                    <label asp-for="_model.Bust"></label>
+                    <span asp-validation-for="_model.Bust" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="_model.Waist" class="form-control" autocomplete="on" aria-required="true" />
+                    <label asp-for="_model.Waist"></label>
+                    <span asp-validation-for="_model.Waist" class="text-danger"></span>
+                </div>
+                 <div class="form-floating">
+                    <input asp-for="_model.Hips" class="form-control" autocomplete="on" aria-required="true" />
+                    <label asp-for="_model.Hips"></label>
+                    <span asp-validation-for="_model.Hips" class="text-danger"></span>
+                </div>
+            <button id="EditModelSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Сохранить</button>
+        </form>
+
+    </div>
+    <hr />
+    <form name="uploadmodels" method="post" enctype="multipart/form-data">
+       <div class="upload">
+          <div class="form-floating">
+              <input type="file" class="form-control" multiple accept=".jpeg,.jpg,.png" id="modelimages">
+              <label class="input-group-text" for="files">Выберите файлы (*.jpeg, *.jpg, *.png)</label>
+           </div>
+           <hr />
+          <div class="progress">
+          <div class="progress-bar"></div>
+          <div class="progress-value">0 %</div>
+          </div>
+          <div class="error"></div>
+       </div> 
+    </form>
+    <div id="modelimg" class="carousel-1 owl-carousel child-content">
+      @{await Html.RenderPartialAsync("_modelCarusel", @Model._model.ModelImages);}
+    </div>
+</div>
+

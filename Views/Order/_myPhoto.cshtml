@@ -1,0 +1,23 @@
+﻿
+@model string
+@{
+    if(Model == null || Model=="")
+    {
+        <h5>Фото товара</h5>
+        <p>(если есть)</p>
+        <a id="imageChange-0" class='nav-link add-image'>
+            <img id="tableImage-0"  class ="tableImage row-image" src="/images/empty.png" alt="Empty"/>
+            <img id="progress-0" class ="tableImage row-image hide" src="/images/Curve-Loading.gif" alt="Empty"/>
+        </a>
+    }
+    else
+    {
+        <h5>Фото товара</h5>
+        <a id="imageChange-0" class='nav-link add-image'>
+             <img id="tableImage-0" class ="tableImage row-image" src="/temp/@Model" alt="@Model"/>
+             <img id="progress-0" class ="tableImage row-image hide" src="/images/Curve-Loading.gif" alt="Empty"/>
+        </a>
+
+    }
+}
+  <script src="~/js/addimage.js"></script>

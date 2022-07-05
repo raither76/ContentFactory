@@ -1,0 +1,60 @@
+﻿@using ContentFactory.ViewModels
+@{
+    ViewData["Title"] = "Добавить категорию";
+    Layout = "_Admin";
+}
+@model ProductViewModel
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="callout callout-info">
+            <strong>Добавление категории:</strong><br>
+            <a>В данном разделе выможете добавить категорию товаров.</a><br>
+        </div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">  
+      </button>
+</div>
+<div class="child-content">
+     <div class="col-md-6">
+        <form id="AddProductForm" asp-action="AddProduct" method="post">
+            <h2>Категория товаров</h2>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="CategoryId" class="form-control" autocomplete="off" aria-required="true" hidden="hidden"  id="CategoryId"/>
+                <input asp-for="CatalogId" class="form-control" autocomplete="off" aria-required="true" hidden="hidden"  id="CatalogId"/>
+                <div class="BreadCrums">
+                    <label>@Model.Bread</label>
+                </div>
+            <div class="form-floating">
+                <input asp-for="ProductName" class="form-control" autocomplete="on" aria-required="true" />
+                <label asp-for="ProductName"></label>
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="input-group form-floating" >
+                <div class="form-floating col-md-3">
+                    <input asp-for="Price3" class="form-control dbl" id="price3" autocomplete="on" aria-required="true" />
+                    <label for="Price3">Цена[3шт]</label>
+                </div>
+                <div class="form-floating col-md-2">
+                    <input asp-for="Price6" class="form-control dbl" id="price6" autocomplete="on" aria-required="true" />
+                    <label for="Price6">Цена[6шт]</label>
+                </div>
+                <div class="form-floating col-md-2">
+                    <input asp-for="Price9" class="form-control dbl" id="price9" autocomplete="on" aria-required="true" />
+                    <label for="Price9">Цена[9шт]</label>
+                </div>
+                <div class="form-floating col-md-2">
+                    <input asp-for="Price12" class="form-control dbl"id="price12"  autocomplete="on" aria-required="true" />
+                    <label for="Price12">Цена[12шт]</label>
+                </div>
+                <div class="form-floating col-md-3">
+                    <input asp-for="Price15" class="form-control dbl" id="price15" autocomplete="on" aria-required="true" />
+                    <label for="Price15">Цена[15шт]</label>
+                </div>
+
+
+            </div>
+            <button id="AddCategorySubmit" type="submit" class="w-100 btn btn-lg btn-primary">Запомнить</button>
+        </form>
+    </div>
+  
+</div>
+

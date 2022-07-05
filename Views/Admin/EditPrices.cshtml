@@ -1,0 +1,65 @@
+﻿@using ContentFactory.ViewModels
+@{
+    ViewData["Title"] = "Редактировать цены";
+    Layout = "_Admin";
+}
+@model PricesViewModel
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="callout callout-info">
+            <strong>Редактировать цены:</strong><br>
+            <a>В данном разделе выможете отредактировать цены на пакеты услуг.</a><br>
+        </div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">  
+      </button>
+</div>
+<div class="child-content">
+     <div class="col-md-12">
+        <form id="EditPricesForm" asp-action="EditPrices" method="post">
+            <div class="top-header">
+                <label>Наименование</label>
+                <label>Цена (3шт)</label>
+                <label>Цена (6шт)</label>
+                <label>Цена (9шт)</label>
+                <label>Цена (12шт)</label>
+                <label>Цена (15шт)</label>
+            </div>
+
+
+            @{
+                int c = 0;
+                for (int i=0;i<Model.lst.Count;i++)
+                {
+                   <div class="top-header">
+                    <label class="category">@Model.lst[i].Name</label>
+                   </div>
+                    @for(int j = 0; j<Model.lst[i].price.Count; j++)
+                    {
+                       <div class="top-header">
+                            <label><a href="#" data-bs-toggle="tooltip" title="@Model.lst[i].price[j].CategoryName">@Model.lst[i].price[j].RowTitle </a></label>
+
+                            <input asp-for="@Model.lst[i].price[j].CatalogId" name="price[@c].CatalogId"  class="form-control" autocomplete="off" aria-required="true" hidden="hidden" />
+                            <input asp-for="@Model.lst[i].price[j].Price3" name="price[@c].Price3" class="form-control dbl" autocomplete="off" aria-required="true"  />
+                            <input asp-for="@Model.lst[i].price[j].Price6" name="price[@c].Price6" class="form-control dbl" autocomplete="off" aria-required="true"  />
+                            <input asp-for="@Model.lst[i].price[j].Price9" name="price[@c].Price9" class="form-control dbl" autocomplete="off" aria-required="true"  />
+                            <input asp-for="@Model.lst[i].price[j].Price12" name="price[@c].Price12"  class="form-control dbl" autocomplete="off" aria-required="true" />
+                            <input asp-for="@Model.lst[i].price[j].Price15"  name="price[@c].Price15" class="form-control dbl" autocomplete="off" aria-required="true"  />
+                       </div>
+                       c++;
+                     }
+
+
+
+
+                }
+            }
+
+
+
+
+            <button id="EditPricesSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Сохранить</button>
+        </form>
+    </div>
+  
+</div>
+

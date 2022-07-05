@@ -1,0 +1,135 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <meta name="description" content=@ViewData["description"] />
+    <title>@ViewData["Title"] - ContentFactory</title>
+
+     <link rel="stylesheet" href="~/lib/jquery-ui/jquery-ui.min.css" />
+     <link rel="stylesheet" href="~/lib/jquery-ui-themes/themes/base/theme.css" />
+     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+     <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />  
+      <link rel="stylesheet" href="~/css/topnav.css" />
+     <link rel="stylesheet" href="~/css/site.css" />
+
+</head>
+<body class="maincontent sidebar-fixed">
+  
+    <nav class="navbar navbar-b2b-dark navbar-dark navbar-expand-sm navbar-toggleable-sm mb-3" data-toggle="sticky-onscroll" id="stickynav">
+        <div class="container-fluid">
+                <img class="navlogo3 sd nav-item" src="/images/add.png" data-toggle-sidebar>    
+                <a class="navbar-brand"asp-area="" asp-controller="Home" asp-action="Index">ContentFactory</a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mncDf" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+               <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" id="mncDf">
+                     <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                      <li class='nav-item'>
+                            <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="EditTxt">
+                            <i class="fa fa-fw fa-edit"></i><span>Редактировать записи</span>
+                            </a>
+                       </li>
+                      <li class='nav-item'>
+                            <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="EditOrders">
+                            <i class="fa fa-fw fa-amazon"></i><span>Заказы</span>
+                            </a>
+                       </li>
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+        </div>
+    </nav>
+    <aside class="main-sidebar" id="sb1">
+      <section id="leftsidebar">
+        <ul id="accordion" class="nav">
+            <li class='nav-item'>
+                <a class="nav-link" asp-area="" asp-controller="Roles" asp-action="UserList">
+                <i class="fa fa-cog fa-spin fa-fw"></i><span> Пользователи</span>
+                </a>
+           </li>
+           <li class='nav-item'>
+                <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="EditPrices">
+                <i class="fa fa-fw fa-usd"></i><span>Цены</span>
+                </a>
+           </li>
+           <li class='nav-item'>
+                <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="Locations">
+                <i class="fa fa-fw fa-map-marker"></i><span>Локации</span>
+                </a>
+           </li>
+
+           <li class='nav-item'>
+                <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="ModelStyles">
+                <i class="fa fa-fw fa-eye"></i><span>Стили</span>
+                </a>
+           </li>
+           <li class='nav-item'>
+                <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="Videos">
+                <i class="fa fa-fw fa-video-camera"></i><span>Видео</span>
+                </a>
+           </li>
+
+           <li class='nav-item'>
+                 <a class='nav-link' data-bs-toggle='collapse' data-bs-parent = '#accordion' href='#Models'>
+                    <i class="fa fa-fw fa-database"></i><span> Модели</span><i class="fa fa-fw fa-angle-down"></i>
+                </a>
+                <ul id='Models' class='nav nav-pills nav-stacked collapse'>
+                    <li class='nav-item'>
+                        <a class="nav-link" style="font-weight:600;color:bisque;" asp-area="" asp-controller="Admin" asp-action="AddModel">
+                        <i class="fa fa-cog fa-plus fa-fw"></i><span> Добавить модель</span>
+                        </a>
+                    </li>
+                    @{@await Component.InvokeAsync("Model");}
+                </ul>
+            </li>
+            <li class='nav-item'>
+                 <a class='nav-link' data-bs-toggle='collapse' data-bs-parent = '#accordion' href='#Goods'>
+                    <i class="fa fa-fw fa-database"></i><span> Товары</span><i class="fa fa-fw fa-angle-down"></i>
+                </a>
+                <ul id='Goods' class='nav nav-pills nav-stacked collapse'>
+                    <li class='nav-item'>
+                        <a class="nav-link" style="font-weight:600;color:bisque;" asp-area="" asp-controller="Admin" asp-action="AddCategory">
+                        <i class="fa fa-cog fa-plus fa-fw"></i><span> Добавить группу категорий</span>
+                        </a>
+                    </li>
+                    @{@await Component.InvokeAsync("Category");}
+               </ul>
+            </li>
+        </ul>
+
+      </section>
+    </aside>
+
+    <div class="body-content">
+        <div class="cf-panel" id="results">
+            @RenderBody()
+        </div>  
+
+    </div>
+
+    <footer class="border-top footer text-muted main_footer">
+        <div class="container">
+            &copy; 2022 - ContentFactory - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-ajax-unobtrusive/dist/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="~/lib/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/additional-methods.min.js"></script>
+     <script src="~/lib/slick-carousel/slick.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

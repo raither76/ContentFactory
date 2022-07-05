@@ -1,0 +1,74 @@
+﻿@using ContentFactory.ViewModels
+@{
+    ViewData["Title"] = "Добавить модель";
+    Layout = "_Admin";
+}
+@model ModelViewModel
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="callout callout-info">
+            <strong>Добавление модели:</strong><br>
+            <a>В данном разделе выможете добавить модель.</a><br>
+        </div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">  
+      </button>
+</div>
+<div class="child-content">
+     <div class="col-md-6">
+        <form id="AddModelForm" asp-action="AddModel" method="post">
+            <h2>Добавить модель</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="_model.Id" name="_model.Id" class="form-control" autocomplete="off" aria-required="true" hidden="hidden"  id="Id"/>
+            <div class="form-floating">
+                <input asp-for="_model.Name" class="form-control" autocomplete="on" aria-required="true" />
+                <label asp-for="_model.Name"></label>
+                <span asp-validation-for="_model.Name" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <select asp-for="_model.CategoryId" name="_model.CategoryId" value="_model.CategoryId" class="form-control" autocomplete="on" aria-required="true" >
+                    @{foreach (var item in Model.Categories) {<option value ="@item.Id">@item.Name</option>}}
+                </select>
+                <label asp-for="_model.CategoryId"></label>
+                <span asp-validation-for="_model.CategoryId" class="text-danger"></span>
+            </div>
+                <div class="form-floating">
+                    <input asp-for="_model.FootSize" class="form-control" autocomplete="on" aria-required="true" />
+                    <label asp-for="_model.FootSize"></label>
+                    <span asp-validation-for="_model.FootSize" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="_model.Size" class="form-control" autocomplete="on" aria-required="true" />
+                    <label asp-for="_model.Size"></label>
+                    <span asp-validation-for="_model.Size" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="_model.Growth" class="form-control" autocomplete="on" aria-required="true" />
+                    <label asp-for="_model.Growth"></label>
+                    <span asp-validation-for="_model.Growth" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="_model.BreastVolume" class="form-control" autocomplete="on" aria-required="true" />
+                    <label asp-for="_model.BreastVolume"></label>
+                    <span asp-validation-for="_model.BreastVolume" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="_model.Bust" class="form-control" autocomplete="on" aria-required="true" />
+                    <label asp-for="_model.Bust"></label>
+                    <span asp-validation-for="_model.Bust" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="_model.Waist" class="form-control" autocomplete="on" aria-required="true" />
+                    <label asp-for="_model.Waist"></label>
+                    <span asp-validation-for="_model.Waist" class="text-danger"></span>
+                </div>
+                 <div class="form-floating">
+                    <input asp-for="_model.Hips" class="form-control" autocomplete="on" aria-required="true" />
+                    <label asp-for="_model.Hips"></label>
+                    <span asp-validation-for="_model.Hips" class="text-danger"></span>
+                </div>
+            <button id="AddModelSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Сохранить</button>
+        </form>
+    </div>
+</div>
+

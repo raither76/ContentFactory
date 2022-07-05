@@ -1,0 +1,131 @@
+﻿@{
+    ViewData["Title"] = "Content Factory - Регистрация";
+}
+@using ContentFactory.ViewModels
+@model RegisterViewModel
+
+<form name="registerForm" asp-action="Register" id="registerForm" method="post" >
+<section class="register">
+    <div class="order">
+        <div class="row">
+            <h4 class="fullrow">Спасибо, что выбираете нас!</h4>
+            <p class="fullrow">
+                 Мы уже достаем наши фотоаппараты, что бы начать выполнять ваш заказ.
+            </p>
+            <p class="fullrow">
+                 Пока мы готовимся создавать супер продающий контент для вас, заполните контактную информацию, что бы могли связаться с вами.
+            </p>
+          
+        </div>
+    </div>
+
+    <div class="order">
+        <div class="row">
+              <div class="regline">
+                <label for="Nick" class="col-sm-2 col-form-label">Имя</label>
+                <div class="inputdata">
+                  <input asp-for="Nick" name="Nick" id="Nick" value="@Model.Nick">
+                </div>
+              </div>
+              <div class="regline">
+                <label for="Brend" class="col-sm-2 col-form-label">Бренд</label>
+                <div class="inputdata">
+                  <input asp-for="Brend" name="Brend" id="Brend" value="@Model.Brend">
+                </div>
+              </div>
+              <div class="regline">
+                <label for="Phone" class="col-sm-2 col-form-label">Телефон</label>
+                <div class="inputdata">
+                  <input asp-for="Phone" name="Phone" id="Phone" value="@Model.Phone"  class="tel">
+                </div>
+              </div>
+              <div class="regline">
+                <label for="TelegramId" class="col-sm-2 col-form-label">TelegramId</label>
+                <div class="inputdata">
+                  <input asp-for="TelegramId" name="TelegramId" id="TelegramId"  value="@Model.TelegramId">
+                </div>
+              </div>
+               <div class="regline">
+                   <label class="col-sm-2 col-form-label">Частное лицо</label>
+                   <a class="radio-container" id="payment-1">
+                       <er id="pay-1" class="radio check">v</er>
+                   </a>
+                   <p>оплата наличными или переводом по карте</p>
+               </div>
+               <div class="regline">
+                   <label class="col-sm-2 col-form-label">ИП</label>
+                   <a class="radio-container" id="payment-2">
+                       <er id="pay-2" class="radio uncheck">v</er>
+                   </a>
+                   <p>оплата по рассчетному счету</p>
+                   <div class="hide-block"  id="ip">
+                     <div class="regline">
+                        <label for="FullName" class="col-sm-2 col-form-label">ИП ФИО</label>
+                        <div class="inputdata">
+                          <input asp-for="FullName" name="FullName" id="FullName" value="@Model.FullName">
+                        </div>
+                    </div>
+                    <div class="regline">
+                        <label for="INN" class="col-sm-2 col-form-label">ИНН</label>
+                        <div class="inputdata">
+                          <input asp-for="INN" name="INN" id="INN" value="@Model.INN">
+                        </div>
+                    </div>
+                   </div>
+               </div>
+               <div class="regline">
+                   <label class="col-sm-2 col-form-label">ООО</label>
+                   <a class="radio-container" id="payment-3">
+                       <er id="pay-3" class="radio uncheck">v</er>
+                   </a>
+                   <p>оплата по рассчетному счету</p>
+                   <div class="hide-block"  id="company">
+                      <div class="regline">
+                        <label for="CompanyName" class="col-sm-2 col-form-label">Компания</label>
+                        <div class="inputdata">
+                          <input asp-for="CompanyName" name="CompanyName" id="CompanyName" value="@Model.CompanyName">
+                        </div>
+                     </div>
+                     <div class="regline">
+                        <label for="INN1" class="col-sm-2 col-form-label">ИНН</label>
+                        <div class="inputdata">
+                          <input asp-for="INN1" name="INN1" id="INN1" value="@Model.INN1">
+                        </div>
+                     </div>
+                     <div class="regline">
+                        <label for="KPP" class="col-sm-2 col-form-label">КПП</label>
+                        <div class="inputdata">
+                          <input asp-for="KPP" name="KPP" id="KPP" value="@Model.KPP">
+                        </div>
+                     </div>
+                      <div class="regline">
+                        <label for="HeadOfCompany" class="col-sm-2 col-form-label">Ген. Дир.</label>
+                        <div class="inputdata">
+                          <input asp-for="HeadOfCompany" name="HeadOfCompany" id="HeadOfCompany" value="@Model.HeadOfCompany">
+                        </div>
+                     </div>
+
+                   </div>
+               </div>
+               <input asp-for="PaymentType" name="PaymentType" id="PaymentType" value="@Model.PaymentType" hidden="hidden" />
+               
+            <div class="regsubmit" id="regdiv">
+                <a class="submit-photo" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="reguser">Готово</a>
+               <button type="submit" id="submit" hidden="hidden"></button>
+            </div>
+           
+                    @{
+                        if (Model.ErrMessage!=null)
+                        {
+                             <div style="margin-top:40px;margin-bottom:30px;">
+                                <label class="error">@Model.ErrMessage</label>
+                            </div>
+                        }
+                    } 
+
+        </div>
+    </div>
+     <input asp-for="OrderId" name="OrderId" id="OrderId" value="@Model.OrderId" hidden="hidden">
+</section>      
+</form>
+        

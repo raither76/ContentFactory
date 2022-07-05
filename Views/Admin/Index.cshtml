@@ -1,0 +1,18 @@
+﻿@using ContentFactory.ViewModels
+@{
+    ViewData["Title"] = "Панель администратора";
+    Layout = "_Admin";
+}
+@model List<Model>
+<figure class="text-center">
+  <blockquote class="blockquote">
+    <p>Выберите свою съемку</p>
+  </blockquote>
+</figure>
+<div class="row index-admin">
+    @{foreach (var item in Model)
+     {
+         await Html.RenderPartialAsync("_model", @item);
+
+     }}
+</div>

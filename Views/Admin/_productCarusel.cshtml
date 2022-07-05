@@ -1,0 +1,55 @@
+﻿@using ContentFactory.Models
+@using ContentFactory.Code
+
+@model List<CatalogImage>
+
+          <table class="table table-success table-striped table-hover tblproduct">
+              <thead>
+                  <tr>
+                      <th style="width:10%;text-align:center;">#</th>
+                      <th style="width:80%;text-align:center;">Фото</th>
+                      <th style="width:10%;text-align:center;">Служебная</th>
+                  </tr>
+              </thead>
+              <tbody>
+
+                    @{
+                         var i = 1;
+                         foreach(var im in Model)
+                         {
+                            <tr>
+                             <th style="width:10%;">@i</th>
+                             <td style="width:10%;text-align:center;vertical-align:central;">
+                                 <img class ="tableImage" src="/uploads/@im.FileName" alt="@im.FileName"/>
+                             </td>
+                             <td style="width:10%;vertical-align:central;">
+                                 <ul class='navbar-nav titlbid'>
+                                     <li class='nav-item '>
+                                        <a data-ajax = 'true' class='nav-link up' href='/Admin/RefreshCatalogImages?imId=@im.Id&direct=up'>
+                                        <img class ="bidicon" src="/images/arrow-up.png"/>
+                                        </a>
+                                     </li>
+                                     <li class='nav-item '>
+                                        <a data-ajax = 'true'  class='nav-link down' href='/Admin/RefreshCatalogImages?imId=@im.Id&direct=down'>
+                                        <img class ="bidicon" src="/images/arrow-down.png"/>
+                                        </a>
+                                     </li>
+                                     <li class='nav-item '>
+                                        <a data-ajax = 'true' class='nav-link deltr' href='/Admin/RemoveCatalogImage?Id=@im.Id'>
+                                        <img class ="bidicon" src="/images/delete.png"/>
+                                        </a>
+                                     </li>
+                                 </ul>
+                             </td>
+                            </tr>
+                            i++;
+                          }
+                     }
+              </tbody>
+
+          </table>
+
+
+
+  
+   

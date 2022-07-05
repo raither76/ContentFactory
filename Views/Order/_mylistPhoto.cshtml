@@ -1,0 +1,19 @@
+﻿@using ContentFactory.ViewModels
+@model imgVM
+@{
+    if(Model.name == null || Model.name=="")
+    {
+        <a id="imageChange-@Model.number" class='nav-link add-image'>
+            <img id="tableImage-@Model.number"  class ="tableImage row-image" style="border-radius:1px;" src="/images/empty.png" alt="Empty"/>
+            <img id="progress-@Model.number" class ="tableImage row-image hide" src="/images/Curve-Loading.gif" alt="Empty"/>
+        </a>
+    }
+    else
+    {
+        <a id="imageChange-@Model.number" class='nav-link add-image'>
+             <img id="tableImage-@Model.number" class ="tableImage row-image" src="/temp/@Model.name" alt="@Model.name"/>
+             <img id="progress-@Model.number" class ="tableImage row-image hide" src="/images/Curve-Loading.gif" alt="Empty"/>
+        </a>
+    }
+}
+
